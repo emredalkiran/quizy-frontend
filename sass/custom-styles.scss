@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+$fonts: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+  "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+$body-family: $fonts;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import "../node_modules/bulma/bulma.sass";
+
+$app-primary: #3e68de;
+
+$primary: $app-primary;
+
+body,
+.footer {
+  background-color: #fcfbf7;
+}
+
+.hero.is-primary {
+  background-color: $app-primary;
+  color: #fff;
+}
+.navbar-item-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  padding: 0.6rem;
+  min-width: 7rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: $black-ter;
+  vertical-align: bottom;
+}
+.navbar-item-button:hover {
+  color: $primary;
+}
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+}
+.subtitle {
+  font-weight: 500;
+}
+.hero-image {
+  height: 500px;
+}
+.is-hero-button {
+  background-color: white;
+  color: $primary;
+  font-weight: 500;
+  border: none;
+}
+.is-hero-button:hover {
+  color: $primary;
+  border: none;
+}
+
+@media (min-width: $fullhd) {
+  .navbar {
+    padding: 0 5rem;
+  }
+  .hero.is-large .hero-body {
+    padding: 10rem 10rem;
+  }
+  .hero-image {
+    height: 500px;
+  }
+}

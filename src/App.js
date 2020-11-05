@@ -1,8 +1,12 @@
+import Layout from './components/layout'
+import Content from './components/content'
 
 function App() {
   return (
     <div className="App">
-      <p>Hello World!</p>
+      <Layout>
+        <Content />
+      </Layout>
     </div>
   );
 }
