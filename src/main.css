@@ -7733,22 +7733,53 @@ body,
   font-weight: 500; }
 
 .hero-image {
-  height: 500px; }
+  height: 768px;
+  width: auto; }
+
+.hero-body .title {
+  color: #3e68de; }
 
 .is-hero-button {
-  background-color: white;
-  color: #3e68de;
+  background-color: #3e68de;
+  color: white;
   font-weight: 500;
   border: none; }
 
 .is-hero-button:hover {
-  color: #3e68de;
-  border: none; }
+  background-color: #4d75e8;
+  border: none;
+  color: white; }
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0 2rem; }
+
+.link-button:hover {
+  background-color: transparent;
+  border: none;
+  color: #3e68de; }
+
+.button.is-primary {
+  background-color: #3e68de;
+  border: none;
+  color: #fff; }
+
+.button.is-primary:hover {
+  background-color: #4d75e8;
+  border: none !important;
+  color: #fff; }
+
+.button.is-primary:focus {
+  outline: none; }
 
 @media (min-width: 1408px) {
   .navbar {
-    padding: 0 5rem; }
+    padding: 0.5rem 5rem; }
   .hero.is-large .hero-body {
-    padding: 10rem 10rem; }
+    padding: 0 0 10rem 10rem; }
   .hero-image {
-    height: 500px; } }
+    height: 768px; } }

@@ -8,7 +8,7 @@ $body-family: $fonts;
 @import "../node_modules/bulma/bulma.sass";
 
 $app-primary: #3e68de;
-
+$app-primary-light: #4d75e8;
 $primary: $app-primary;
 
 body,
@@ -42,27 +42,59 @@ body,
   font-weight: 500;
 }
 .hero-image {
-  height: 500px;
+  height: 768px;
+  width: auto;
+}
+.hero-body .title {
+  color: $primary;
 }
 .is-hero-button {
-  background-color: white;
-  color: $primary;
+  background-color: $primary;
+  color: white;
   font-weight: 500;
   border: none;
 }
 .is-hero-button:hover {
-  color: $primary;
+  background-color: $app-primary-light;
   border: none;
+  color: white;
+}
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0 2rem;
+}
+.link-button:hover {
+  background-color: transparent;
+  border: none;
+  color: $primary;
+}
+
+.button.is-primary {
+  background-color: $primary;
+  border: none;
+  color: #fff;
+}
+.button.is-primary:hover {
+  background-color: $app-primary-light;
+  border: none !important;
+  color: #fff;
+}
+.button.is-primary:focus {
+  outline: none;
 }
 
 @media (min-width: $fullhd) {
   .navbar {
-    padding: 0 5rem;
+    padding: 0.5rem 5rem;
   }
   .hero.is-large .hero-body {
-    padding: 10rem 10rem;
+    padding: 0 0 10rem 10rem;
   }
   .hero-image {
-    height: 500px;
+    height: 768px;
   }
 }

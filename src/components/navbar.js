@@ -1,7 +1,14 @@
 import { NavLink } from 'react-router-dom'
 import MenuItem from './menu-item'
+import { useState} from 'react'
+import Login from './login'
 
 function NavBar() {
+  const[loginOpen, setLoginOpen] = useState(false)
+
+  const close = ()=> {
+    setLoginOpen(false)
+  }
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -35,16 +42,17 @@ function NavBar() {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-                <MenuItem className="button is-primary">
-                  <strong>Sign up</strong>
-                </MenuItem>
-                <MenuItem className="button is-light">
-                  Log in
-                </MenuItem>
+              <div className="link-button" onClick={()=>setLoginOpen(true)}>
+                <span>Login</span>
+              </div>
+              <button className="button is-primary">
+                <strong>Sign up</strong>
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <Login open={loginOpen} close={close}/>
     </nav>
   )
 }
