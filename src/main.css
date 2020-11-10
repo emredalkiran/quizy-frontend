@@ -7776,6 +7776,34 @@ body,
 .button.is-primary:focus {
   outline: none; }
 
+.input-error {
+  font-size: 0.8rem;
+  color: #f14668;
+  position: relative;
+  bottom: 0; }
+
+.input-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: block; }
+
+.input-elements-wrapper {
+  padding: 1rem 0;
+  display: block;
+  height: 5rem; }
+
+.is-primary.input,
+.is-primary.textarea {
+  border-color: #ccc; }
+
+.is-primary.input:focus,
+.is-primary.textarea:focus {
+  border-color: #3e68de;
+  box-shadow: none; }
+
+.form {
+  width: 100%; }
+
 @media (min-width: 1408px) {
   .navbar {
     padding: 0.5rem 5rem; }

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import MenuItem from './menu-item'
 import { useState} from 'react'
-import Login from './login'
+import SignupForm from './login-modal'
 
 function NavBar() {
   const[loginOpen, setLoginOpen] = useState(false)
@@ -52,7 +52,7 @@ function NavBar() {
           </div>
         </div>
       </div>
-      <Login open={loginOpen} close={close}/>
+      <SignupForm open={loginOpen} close={close}/>
     </nav>
   )
 }
