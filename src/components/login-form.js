@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 
 const loginValidationSchema = Yup.object().shape({
-  email: Yup.string().email('Please enter a valid email address ').required('Please enter your email address'),
-  password: Yup.string().min(8, 'Your password should be at least 8 characters in length').required('Please enter your password')
+  email: Yup.string().required('Please enter your email address').email('Please enter a valid email address '),
+  password: Yup.string().required('Please enter your password').min(8, 'Your password should be at least 8 characters in length')
 })
 
 const validateSingleField = (fieldName, value) => {
@@ -34,6 +34,7 @@ const validateSingleField = (fieldName, value) => {
 
   useEffect(()=> {
     let passwordStatus = validateSingleField('password', password)
+    console.log(passwordStatus)
     if (!passwordStatus[0]) {
       setPasswordErrorMessage('')
     }
