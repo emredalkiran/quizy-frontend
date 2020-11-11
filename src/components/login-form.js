@@ -34,7 +34,6 @@ const validateSingleField = (fieldName, value) => {
 
   useEffect(()=> {
     let passwordStatus = validateSingleField('password', password)
-    console.log(passwordStatus)
     if (!passwordStatus[0]) {
       setPasswordErrorMessage('')
     }
@@ -44,19 +43,21 @@ const validateSingleField = (fieldName, value) => {
  }, [password])
   return (
     <form>
+      <div className="login-input-elements-wrapper">
       <div>
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" onFocus={()=>setTouched({...touched, email:true})} onChange={ (e)=>setEmail(e.target.value)} value={email}/>
+        <label className="label" htmlFor="email">Email</label>
+        <input type="email" name="email" placeholder="Email address" className={`input ${(emailErrorMessage !== '' && touched.email) ? 'is-danger': ''}`} onFocus={()=>setTouched({...touched, email:true})} onChange={ (e)=>setEmail(e.target.value)} value={email}/>
         { (emailErrorMessage !== '' && touched.email) ? (
-         <div>{emailErrorMessage}</div> ) : ''
+         <div className="input-error">{emailErrorMessage}</div> ) : ''
       }
       </div>
       <div>
-        <label htmlFor="password">password</label>
-        <input type="password" name="password" onFocus={()=>setTouched({...touched, password:true})} onChange={ (e)=> { setPassword(e.target.value)}} value={password}/>
+        <label className="label" htmlFor="password">Password</label>
+        <input type="password" name="password" className={`input ${(passwordErrorMessage !== '' && touched.password) ? 'is-danger': ''}`}  placeholder="Password" onFocus={()=>setTouched({...touched, password:true})} onChange={ (e)=> { setPassword(e.target.value)}} value={password}/>
         { (passwordErrorMessage !== '' && touched.password) ? (
-         <div>{passwordErrorMessage}</div>
+         <div className="input-error">{passwordErrorMessage}</div>
        ) : null}
+      </div>
       </div>
     </form> 
   )

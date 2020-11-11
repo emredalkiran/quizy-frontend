@@ -98,10 +98,12 @@ body,
   font-weight: 600;
   display: block;
 }
-.input-elements-wrapper {
-  padding: 1rem 0;
+.login-input-elements-wrapper {
+  padding: 1em;
   display: block;
-  height: 5rem;
+}
+.login-input-elements-wrapper div {
+  height: 6em;
 }
 
 .is-primary.input,
