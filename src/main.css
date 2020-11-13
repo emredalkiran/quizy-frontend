@@ -7806,6 +7806,10 @@ body,
 .form {
   width: 100%; }
 
+.modal-card-head,
+.modal-card-foot {
+  background-color: white; }
+
 @media (min-width: 1408px) {
   .navbar {
     padding: 0.5rem 5rem; }
