@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import MenuItem from './menu-item'
 import { useState} from 'react'
 import SignupForm from './login-modal'
@@ -12,9 +12,9 @@ function NavBar() {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <a href="/">
+        <Link to="/">
           <img src="/assets/img/quizy-logo.png" width="200px" height="100px" alt="quizy-logo"/>
-        </a>
+        </Link>
         <button className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
