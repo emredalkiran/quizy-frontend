@@ -15,47 +15,61 @@ const validateSingleField = (fieldName, value) => {
    }
  }
 
- function LoginForm () {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [emailErrorMessage, setEmailErrorMessage] = useState('')
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState('')
+ function LoginForm (props) {
+  const [inputs, setInputs] = useState({
+    email: '',
+    password: ''
+  })
+  const [errorMessages, setErrorMessages] = useState({
+    emailErrorMessage: '',
+    passwordErrorMessage: '',
+  })
   const [touched, setTouched] = useState({email:false, password: false})  
 
   useEffect(()=> {
-     let emailStatus = validateSingleField('email', email)
+     let emailStatus = validateSingleField('email', inputs.email)
      if (!emailStatus[0]) {
-       setEmailErrorMessage('')
+       setErrorMessages({...errorMessages,email: ''})
      }
      else if (emailStatus[0]) {
-       setEmailErrorMessage(emailStatus[1].message)
+      setErrorMessages({...errorMessages,email: emailStatus[1].message})
      }
-  }, [email])
+      // eslint-disable-next-line
+  }, [inputs.email])
 
   useEffect(()=> {
-    let passwordStatus = validateSingleField('password', password)
+    let passwordStatus = validateSingleField('password', inputs.password)
     if (!passwordStatus[0]) {
-      setPasswordErrorMessage('')
+      setErrorMessages({...errorMessages, password: ''})
     }
     else if (passwordStatus[0]) {
-      setPasswordErrorMessage(passwordStatus[1].message)
+      setErrorMessages({...errorMessages, password: passwordStatus[1].message})
     }
- }, [password])
+     // eslint-disable-next-line
+ }, [inputs.password])
+
+  const handleChange = (e) => {
+    const fieldName = e.target.name
+      if (!touched[fieldName]) {
+        setTouched({...touched, [fieldName]:true})
+      }
+      setInputs({...inputs, [fieldName]: e.target.value})
+    }
 
  const handleSubmit = async (e)=> {
-  setTouched({email:true, password: true}) 
   e.preventDefault()
+  setTouched({email:true, password: true}) 
   try {
-    const loginData = loginValidationSchema.validateSync({email: email, password: password}, { abortEarly: false })
-    console.log(loginData)
+    const loginData = loginValidationSchema.validateSync(inputs, { abortEarly: false })
+    await props.login(loginData)
   }
   catch (err) {
+    //check err type to see if it is validation error or error with asnyc network request
     let errorFields = []
     err.inner.forEach(error => {
       if (!errorFields.includes(error.path)) {
         errorFields.push(error.path)
-        error.path === 'email' ? setEmailErrorMessage(error.message) : setPasswordErrorMessage(error.message)
-
+        setErrorMessages({...errorMessages, [error.path]: error.message})
       }
     })
   }
@@ -65,16 +79,16 @@ const validateSingleField = (fieldName, value) => {
       <div className="login-input-elements-wrapper">
       <div>
         <label className="label" htmlFor="email">Email</label>
-        <input type="email" name="email" placeholder="Email address" className={`input ${(emailErrorMessage !== '' && touched.email) ? 'is-danger': ''}`} onFocus={()=>setTouched({...touched, email:true})} onChange={ e => setEmail(e.target.value)} value={email}/>
-        { (emailErrorMessage !== '' && touched.email) ? (
-         <div className="input-error">{emailErrorMessage}</div> ) : ''
+        <input type="email" name="email" placeholder="Email address" className={`input ${(errorMessages.email !== '' && touched.email) ? 'is-danger': ''}`} onBlur={()=>setTouched({...touched, email:true})} onChange={ e => handleChange(e)} value={inputs.email}/>
+        { (errorMessages.email !== '' && touched.email) ? (
+         <div className="input-error">{errorMessages.email}</div> ) : ''
       }
       </div>
       <div>
         <label className="label" htmlFor="password">Password</label>
-        <input type="password" name="password" className={`input ${(passwordErrorMessage !== '' && touched.password) ? 'is-danger': ''}`}  placeholder="Password" onFocus={()=>setTouched({...touched, password:true})} onChange={ e => { setPassword(e.target.value)}} value={password}/>
-        { (passwordErrorMessage !== '' && touched.password) ? (
-         <div className="input-error">{passwordErrorMessage}</div>
+        <input type="password" name="password" className={`input ${(errorMessages.password !== '' && touched.password) ? 'is-danger': ''}`}  placeholder="Password" onBlur={()=>setTouched({...touched, password:true})} onChange={ e => handleChange(e)} value={inputs.password}/>
+        { (errorMessages.password !== '' && touched.password) ? (
+         <div className="input-error">{errorMessages.password}</div>
        ) : null}
       </div>
       <button type="submit" className="button is-primary is-fullwidth has-text-weight-medium" onClick={e=>handleSubmit(e)}>Continue</button>
