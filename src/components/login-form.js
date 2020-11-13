@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 
 const loginValidationSchema = Yup.object().shape({
@@ -21,59 +21,44 @@ const validateSingleField = (fieldName, value) => {
     password: ''
   })
   const [errorMessages, setErrorMessages] = useState({
-    emailErrorMessage: '',
-    passwordErrorMessage: '',
+    email: '',
+    password: '',
   })
   const [touched, setTouched] = useState({email:false, password: false})  
 
-  useEffect(()=> {
-     let emailStatus = validateSingleField('email', inputs.email)
-     if (!emailStatus[0]) {
-       setErrorMessages({...errorMessages,email: ''})
-     }
-     else if (emailStatus[0]) {
-      setErrorMessages({...errorMessages,email: emailStatus[1].message})
-     }
-      // eslint-disable-next-line
-  }, [inputs.email])
-
-  useEffect(()=> {
-    let passwordStatus = validateSingleField('password', inputs.password)
-    if (!passwordStatus[0]) {
-      setErrorMessages({...errorMessages, password: ''})
-    }
-    else if (passwordStatus[0]) {
-      setErrorMessages({...errorMessages, password: passwordStatus[1].message})
-    }
-     // eslint-disable-next-line
- }, [inputs.password])
-
   const handleChange = (e) => {
     const fieldName = e.target.name
-      if (!touched[fieldName]) {
-        setTouched({...touched, [fieldName]:true})
-      }
-      setInputs({...inputs, [fieldName]: e.target.value})
+    if (!touched[fieldName]) {
+      setTouched({...touched, [fieldName]:true})
     }
+    setInputs({...inputs, [fieldName]: e.target.value})
+    let fieldErrorStatus = validateSingleField(fieldName, inputs[fieldName])
+    if (!fieldErrorStatus[0]) {
+      setErrorMessages({...errorMessages,[fieldName]: ''})
+    }
+    else if (fieldErrorStatus[0]) {
+     setErrorMessages({...errorMessages,[fieldName]: fieldErrorStatus[1].message})
+    }
+  }
 
- const handleSubmit = async (e)=> {
-  e.preventDefault()
-  setTouched({email:true, password: true}) 
-  try {
-    const loginData = loginValidationSchema.validateSync(inputs, { abortEarly: false })
-    await props.login(loginData)
+  const handleSubmit = async (e)=> {
+    e.preventDefault()
+    setTouched({email:true, password: true}) 
+    try {
+      const loginData = loginValidationSchema.validateSync(inputs, { abortEarly: false })
+      await props.login(loginData)
+    }
+    catch (err) {
+      //check err type to see if it is validation error or error with asnyc network request
+      let errorFields = []
+      err.inner.forEach(error => {
+        if (!errorFields.includes(error.path)) {
+          errorFields.push(error.path)
+          setErrorMessages({...errorMessages, [error.path]: error.message})
+        }
+      })
+    }
   }
-  catch (err) {
-    //check err type to see if it is validation error or error with asnyc network request
-    let errorFields = []
-    err.inner.forEach(error => {
-      if (!errorFields.includes(error.path)) {
-        errorFields.push(error.path)
-        setErrorMessages({...errorMessages, [error.path]: error.message})
-      }
-    })
-  }
- }
   return (
     <form>
       <div className="login-input-elements-wrapper">
