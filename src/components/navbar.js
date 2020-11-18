@@ -2,10 +2,16 @@ import { NavLink, Link } from 'react-router-dom'
 import MenuItem from './menu-item'
 import { useState} from 'react'
 import SignupForm from './login-modal'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../features/auth/authSlice'
 
-function NavBar() {
+
+
+
+export default function NavBar() {
   const[loginOpen, setLoginOpen] = useState(false)
-
+  const user = useSelector(selectUser)
+  console.log(user)
   const close = ()=> {
     setLoginOpen(false)
   }
@@ -41,6 +47,7 @@ function NavBar() {
         </div>
         <div className="navbar-end">
           <div className="navbar-item">
+            {(user.name === '') ? (
             <div className="buttons">
               <div className="link-button" onClick={()=>setLoginOpen(true)}>
                 <span>Login</span>
@@ -48,12 +55,14 @@ function NavBar() {
               <button className="button is-primary">
                 <strong>Sign up</strong>
               </button>
-            </div>
+            </div>) : (
+
+              <div>{user.name}</div>
+            )}
           </div>
         </div>
       </div>
-      <SignupForm open={loginOpen} close={close}/>
+      <SignupForm open={loginOpen} close={close} onLogin={() => setLoginOpen(false)}/>
     </nav>
   )
 }
-export default NavBar

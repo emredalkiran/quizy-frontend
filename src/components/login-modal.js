@@ -11,7 +11,7 @@ function LoginModal (props)  {
           <button className="delete" onClick={props.close} aria-label="close"></button>
         </header>
         <section className="modal-card-body">
-          <LoginForm />
+          <LoginForm onLogin={props.onLogin}/>
         </section>
       </div>
     </div>
