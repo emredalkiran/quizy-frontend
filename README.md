@@ -46,7 +46,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### `npm run css-watch`
 
-I'm using SASS to override some defaults of the Bulma framework. You can use `custom-styles.css` under `sass` folder to customize the framework. Running `npm css-watch` command will build a fresh css file named `main.css` and will follow and any changes you made to compile a new version of the `main.css`.
+I'm using SASS to override some defaults of the Bulma framework. You can use `custom-styles.css` under `sass` folder to customize the framework. Running `npm css-watch` command will build a fresh css file named `main.css` and will follow any changes you made to compile a new version of the `main.css`.
 
 ## License
 
