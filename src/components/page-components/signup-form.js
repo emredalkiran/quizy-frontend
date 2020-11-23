@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
 import { useDispatch} from 'react-redux'
 import { logIn, loggedIn } from '../features/auth/authSlice'
-import { validateSingleField, loginValidationSchema} from '../utils/validation'
+import { validateSingleField, signupValidationSchema} from '../utils/validation'
 
- export default function LoginForm (props) {
+
+ export default function SignupForm (props) {
   const [inputs, setInputs] = useState({
-    email: '',
-    password: ''
-  })
-  const [errorMessages, setErrorMessages] = useState({
+    name:'',
+    lastName:'',
     email: '',
     password: '',
+    passwordConfirmation: ''
+  })
+  const [errorMessages, setErrorMessages] = useState({
+    name:'',
+    lastName:'',
+    email: '',
+    password: '',
+    passwordConfirmation: ''
   })
   const [touched, setTouched] = useState({
-    email:false,
-    password: false 
+    name:'',
+    lastName:'',
+    email: '',
+    password: '',
+    passwordConfirmation: ''
   })  
 
   const dispatch = useDispatch()
@@ -24,9 +34,8 @@ import { validateSingleField, loginValidationSchema} from '../utils/validation'
     if (!touched[fieldName]) {
       setTouched({ ...touched, [fieldName]:true })
     }
-    console.log("Value: ", e.target.value)
     setInputs({ ...inputs, [fieldName]: e.target.value })
-    let fieldErrorStatus = validateSingleField(fieldName, e.target.value)
+    let fieldErrorStatus = validateSingleField(fieldName, e.target.value, 'signup')
     if (!fieldErrorStatus[0]) {
       setErrorMessages({ ...errorMessages,[fieldName]: '' })
     }
@@ -37,9 +46,15 @@ import { validateSingleField, loginValidationSchema} from '../utils/validation'
 
   const handleSubmit = async (e)=> {
     e.preventDefault()
-    setTouched({email:true, password: true}) 
+    setTouched({
+      name:true,
+      lastName: true,
+      email:true,
+      password: true,
+      passwordConfirmation: true
+    }) 
     try {
-      const credendtials = loginValidationSchema.validateSync(inputs, { abortEarly: false })
+      const credendtials = signupValidationSchema.validateSync(inputs, { abortEarly: false })
       await dispatch(logIn(credendtials))
       props.onLogin()
       setTouched({ email:false, password: false })
