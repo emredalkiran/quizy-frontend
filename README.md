@@ -4,7 +4,7 @@ quizy is a to be SaaS solution addressing online quiz and survey utilities. This
 
 ## Tools and Technologies Used
 
-The project has been bootstrapped using create-react-app. On top of that, I've leveraged redux, redux-thunk and redux-toolkit as well as axios and react-router so far. For styling, I've used [Bulma](https://bulma.io/), an open source, css only framework with no JavaScript.
+The project has been bootstrapped using `create-react-app`. On top of that, I've leveraged `redux`, `redux-thunk` and `redux-toolkit` as well as `axios` and `react-router` so far. For styling, I've used [Bulma](https://bulma.io/), an open source, css only framework with no JavaScript.
 
 ## Available Scripts
 
