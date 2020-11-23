@@ -1,6 +1,6 @@
 # Getting Started with quizy
 
-quizy is a to be SaaS solution addressing online quiz and survey utilities. This is only the frontend part of the whole project. You can reach backend repo at [quizy-backend](https://github.com/emredalkiran/quizy)
+quizy is a SaaS solution that aims to ease the processes of making online quizzes and surveys. This is only the frontend part of the whole project. You can reach backend repo at [quizy-backend](https://github.com/emredalkiran/quizy)
 
 ## Tools and Technologies Used
 
