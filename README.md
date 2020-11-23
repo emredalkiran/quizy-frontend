@@ -1,10 +1,14 @@
-# Getting Started with Create React App
+# Getting Started with quizy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+quizy is a to be SaaS solution addressing online quiz and survey utilities. This is only the frontend part of the whole project. You can reach backend repo at [quizy-backend](https://github.com/emredalkiran/quizy)
+
+## Tools and Technologies Used
+
+The project has been bootstrapped using create-react-app. On top of that, I've leveraged redux, redux-thunk and redux-toolkit as well as axios and react-router so far. For styling, I've used [Bulma](https://bulma.io/), an open source, css only framework with no JavaScript.
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, as the default scripts of create-react-app, you can run:
 
 ### `npm start`
 
@@ -16,6 +20,7 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
+Please kindly note that test cases to be added shortly.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
@@ -39,32 +44,10 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### `npm run css-watch`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+I'm using SASS to override some defaults of the Bulma framework. You can use `custom-styles.css` under `sass` folder to customize the framework. Running `npm css-watch` command will build a fresh css file named `main.css` and will follow and any changes you made to compile a new version of the `main.css`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under [MIT License](https://opensource.org/licenses/MIT)
