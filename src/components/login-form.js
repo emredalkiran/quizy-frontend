@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch} from 'react-redux'
-import { logIn, loggedIn } from '../features/auth/authSlice'
+import { login } from '../features/auth/authSlice'
 import { validateSingleField, loginValidationSchema} from '../utils/validation'
+import FormInput from './form-input'
 
  export default function LoginForm (props) {
   const [inputs, setInputs] = useState({
@@ -24,9 +25,8 @@ import { validateSingleField, loginValidationSchema} from '../utils/validation'
     if (!touched[fieldName]) {
       setTouched({ ...touched, [fieldName]:true })
     }
-    console.log("Value: ", e.target.value)
     setInputs({ ...inputs, [fieldName]: e.target.value })
-    let fieldErrorStatus = validateSingleField(fieldName, e.target.value)
+    let fieldErrorStatus = validateSingleField(fieldName, e.target.value, 'login')
     if (!fieldErrorStatus[0]) {
       setErrorMessages({ ...errorMessages,[fieldName]: '' })
     }
@@ -40,7 +40,7 @@ import { validateSingleField, loginValidationSchema} from '../utils/validation'
     setTouched({email:true, password: true}) 
     try {
       const credendtials = loginValidationSchema.validateSync(inputs, { abortEarly: false })
-      await dispatch(logIn(credendtials))
+      await dispatch(login(credendtials))
       props.onLogin()
       setTouched({ email:false, password: false })
     }
@@ -64,21 +64,12 @@ import { validateSingleField, loginValidationSchema} from '../utils/validation'
     <form>
       <div className="login-input-elements-wrapper">
         <span>Temporary</span>
-      <div>
-        <label className="label" htmlFor="email">Email</label>
-        <input type="email" name="email" placeholder="Email address" className={ `input ${(errorMessages.email !== '' && touched.email) ? 'is-danger': ''}` } onBlur={ ()=>setTouched({...touched, email:true})} onChange={ e => handleChange(e) } value={ inputs.email }/>
-        { (errorMessages.email !== '' && touched.email) ? (
-         <div className="input-error">{ errorMessages.email }</div> ) : ''
-      }
-      </div>
-      <div>
-        <label className="label" htmlFor="password">Password</label>
-        <input type="password" name="password" className={ `input ${(errorMessages.password !== '' && touched.password) ? 'is-danger': ''}` }  placeholder="Password" onBlur={ ()=>setTouched({...touched, password:true }) } onChange={ e => handleChange(e) }  value={ inputs.password }/>
-        { (errorMessages.password !== '' && touched.password) ? (
-         <div className="input-error">{ errorMessages.password }</div>
-       ) : null}
-      </div>
+        <FormInput fieldName="email" type="email" label="Email"  errorMessage={ errorMessages.email } touched={ touched.email } blur={ ()=>setTouched({...touched, email:true})} change={ e => handleChange(e) } inputValue={ inputs.email }/>
+        <FormInput fieldName="password" type="password" label="Password"  errorMessage={ errorMessages.password } touched={ touched.password } blur={ ()=>setTouched({...touched, password:true})} change={ e => handleChange(e) } inputValue={ inputs.password }/>  
       <button type="submit" className="button is-primary is-fullwidth has-text-weight-medium" onClick={ e =>handleSubmit(e) }>Continue</button>
+      <p className="mt-4">
+        <span>Not registered yet? <span className="link-text" onClick={ props.changeModal }>Sign up</span></span>
+      </p>
       </div>
     </form> 
   )
