@@ -2,8 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { axios } from 'axios'
 
 
-export const logIn = createAsyncThunk('auth/logIn', async (credentials) => {
+export const login = createAsyncThunk('auth/login', async (credentials) => {
   const response = await axios.post('/v1/api/user/login', credentials)
+  return response
+})
+
+export const signup = createAsyncThunk('auth/signup', async (credentials) => {
+  const response = await axios.post('/v1/api/user/signup', credentials)
   return response
 })
 
@@ -22,10 +27,11 @@ const authSlice = createSlice({
     },
   },
   extraReducers: {
-    [logIn.fulfilled]: (sliceState, action) => {
-    //  return {...state, user:action.payload.name}
-      sliceState.user = action.payload
-      sliceState.isLoggedIn = true
+    [login.fulfilled]: (sliceState, action) => {
+      console.log("Logged in")
+    },
+    [signup.fulfilled]: (sliceState, action) => {
+      console.log("Signed up")
     }
   }
 })
