@@ -25,6 +25,10 @@ export default function NavBar() {
       setModalType('signup')
     }
   }
+
+  const changeModal = ()=> {
+    modalType === 'login' ? setModalType('signup') : setModalType('login')
+  }
   return (
     <nav className="navbar">
       <div className="navbar-brand">
@@ -57,7 +61,7 @@ export default function NavBar() {
         </div>
         <div className="navbar-end">
           <div className="navbar-item">
-            {(user.name === '') ? (
+            { (user.name === '') ? (
             <div className="buttons">
               <div className="link-button">
                 <span id="login" onClick={ (e)=>handleClick(e) }>Login</span>
@@ -67,12 +71,12 @@ export default function NavBar() {
               </button>
             </div>) : (
 
-              <div>{user.name}</div>
-            )}
+              <div>{ user.name }</div>
+            ) }
           </div>
         </div>
       </div>
-      <UserAuthenticateModal open={ modelOpen } close={ close } type={ modalType } onSuccess={ () => setModalOpen(false) }/>
+      <UserAuthenticateModal open={ modelOpen } close={ close } type={ modalType } changeModal={ ()=>changeModal() } onSuccess={ () => setModalOpen(false) }/>
 
     </nav>
   )

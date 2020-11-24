@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch} from 'react-redux'
-import { logIn, loggedIn } from '../features/auth/authSlice'
+import { signup } from '../features/auth/authSlice'
 import { validateSingleField, signupValidationSchema} from '../utils/validation'
 import FormInput from './form-input'
 
@@ -9,8 +9,7 @@ import FormInput from './form-input'
     name:'',
     lastName:'',
     email: '',
-    password: '',
-    passwordConfirmation: ''
+    password: ''
   })
   const [errorMessages, setErrorMessages] = useState({
     name:'',
@@ -23,8 +22,7 @@ import FormInput from './form-input'
     name:'',
     lastName:'',
     email: '',
-    password: '',
-    passwordConfirmation: ''
+    password: ''
   })  
 
   const dispatch = useDispatch()
@@ -51,11 +49,10 @@ import FormInput from './form-input'
       lastName: true,
       email:true,
       password: true,
-      passwordConfirmation: true
     }) 
     try {
       const credendtials = signupValidationSchema.validateSync(inputs, { abortEarly: false })
-      await dispatch(logIn(credendtials))
+      await dispatch(signup(credendtials))
       props.onLogin()
       setTouched({ email:false, password: false })
     }
@@ -80,12 +77,13 @@ import FormInput from './form-input'
       <div className="login-input-elements-wrapper">
         <span>Temporary</span>
         <FormInput fieldName="name" type="text" label="Name"  errorMessage={ errorMessages.name } touched={ touched.name } blur={ ()=>setTouched({...touched, name:true})} change={ e => handleChange(e) } inputValue={ inputs.name }/>
-        <FormInput fieldName="lastName" type="text" label="Last name" errorMessage={ errorMessages.lastName } touched={ touched.email } blur={ ()=>setTouched({...touched, lastName:true})} change={ e => handleChange(e) } inputValue={ inputs.lastName }/>
-        <FormInput fieldName="email" type="email" label="Email"  errorMessage={ errorMessages.email } touched={ touched.lastName } blur={ ()=>setTouched({...touched, email:true})} change={ e => handleChange(e) } inputValue={ inputs.email }/>
-        <FormInput fieldName="password" type="password" label="Password"  errorMessage={ errorMessages.password } touched={ touched.password } blur={ ()=>setTouched({...touched, password:true})} change={ e => handleChange(e) } inputValue={ inputs.password }/>
-        <FormInput fieldName="passwordConfirmation" type="password" label="Password Confirmation" errorMessage={ errorMessages.passwordConfirmation } touched={ touched.passwordConfirmation } blur={ ()=>setTouched({...touched, passwordConfirmation:true})} change={ e => handleChange(e) } inputValue={ inputs.passwordConfirmation }/>
-        
+        <FormInput fieldName="lastName" type="text" label="Last name" errorMessage={ errorMessages.lastName } touched={ touched.lastName } blur={ ()=>setTouched({...touched, lastName:true})} change={ e => handleChange(e) } inputValue={ inputs.lastName }/>
+        <FormInput fieldName="email" type="email" label="Email"  errorMessage={ errorMessages.email } touched={ touched.email } blur={ ()=>setTouched({...touched, email:true})} change={ e => handleChange(e) } inputValue={ inputs.email }/>
+        <FormInput fieldName="password" type="password" label="Password"  errorMessage={ errorMessages.password } touched={ touched.password } blur={ ()=>setTouched({...touched, password:true})} change={ e => handleChange(e) } inputValue={ inputs.password }/>  
       <button type="submit" className="button is-primary is-fullwidth has-text-weight-medium" onClick={ e =>handleSubmit(e) }>Continue</button>
+      <p className="mt-4">
+        <span>Already a member? <span className="link-text" onClick={ props.changeModal }> Login</span></span>
+      </p>
       </div>
     </form> 
   )
