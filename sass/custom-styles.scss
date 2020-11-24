@@ -126,6 +126,14 @@ body,
 .modal-card-title {
   text-transform: capitalize;
 }
+.link-text {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-text:hover {
+  color: $app-primary;
+}
 @media (min-width: $fullhd) {
   .navbar {
     padding: 0.5rem 5rem;

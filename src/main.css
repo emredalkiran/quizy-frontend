@@ -7813,6 +7813,13 @@ body,
 .modal-card-title {
   text-transform: capitalize; }
 
+.link-text {
+  text-decoration: underline;
+  cursor: pointer; }
+
+.link-text:hover {
+  color: #3e68de; }
+
 @media (min-width: 1408px) {
   .navbar {
     padding: 0.5rem 5rem; }
