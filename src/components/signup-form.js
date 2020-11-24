@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch} from 'react-redux'
 import { logIn, loggedIn } from '../features/auth/authSlice'
 import { validateSingleField, signupValidationSchema} from '../utils/validation'
-
+import FormInput from './form-input'
 
  export default function SignupForm (props) {
   const [inputs, setInputs] = useState({
@@ -79,20 +79,12 @@ import { validateSingleField, signupValidationSchema} from '../utils/validation'
     <form>
       <div className="login-input-elements-wrapper">
         <span>Temporary</span>
-      <div>
-        <label className="label" htmlFor="email">Email</label>
-        <input type="email" name="email" placeholder="Email address" className={ `input ${(errorMessages.email !== '' && touched.email) ? 'is-danger': ''}` } onBlur={ ()=>setTouched({...touched, email:true})} onChange={ e => handleChange(e) } value={ inputs.email }/>
-        { (errorMessages.email !== '' && touched.email) ? (
-         <div className="input-error">{ errorMessages.email }</div> ) : ''
-      }
-      </div>
-      <div>
-        <label className="label" htmlFor="password">Password</label>
-        <input type="password" name="password" className={ `input ${(errorMessages.password !== '' && touched.password) ? 'is-danger': ''}` }  placeholder="Password" onBlur={ ()=>setTouched({...touched, password:true }) } onChange={ e => handleChange(e) }  value={ inputs.password }/>
-        { (errorMessages.password !== '' && touched.password) ? (
-         <div className="input-error">{ errorMessages.password }</div>
-       ) : null}
-      </div>
+        <FormInput fieldName="name" type="text" label="Name"  errorMessage={ errorMessages.name } touched={ touched.name } blur={ ()=>setTouched({...touched, name:true})} change={ e => handleChange(e) } inputValue={ inputs.name }/>
+        <FormInput fieldName="lastName" type="text" label="Last name" errorMessage={ errorMessages.lastName } touched={ touched.email } blur={ ()=>setTouched({...touched, lastName:true})} change={ e => handleChange(e) } inputValue={ inputs.lastName }/>
+        <FormInput fieldName="email" type="email" label="Email"  errorMessage={ errorMessages.email } touched={ touched.lastName } blur={ ()=>setTouched({...touched, email:true})} change={ e => handleChange(e) } inputValue={ inputs.email }/>
+        <FormInput fieldName="password" type="password" label="Password"  errorMessage={ errorMessages.password } touched={ touched.password } blur={ ()=>setTouched({...touched, password:true})} change={ e => handleChange(e) } inputValue={ inputs.password }/>
+        <FormInput fieldName="passwordConfirmation" type="password" label="Password Confirmation" errorMessage={ errorMessages.passwordConfirmation } touched={ touched.passwordConfirmation } blur={ ()=>setTouched({...touched, passwordConfirmation:true})} change={ e => handleChange(e) } inputValue={ inputs.passwordConfirmation }/>
+        
       <button type="submit" className="button is-primary is-fullwidth has-text-weight-medium" onClick={ e =>handleSubmit(e) }>Continue</button>
       </div>
     </form> 

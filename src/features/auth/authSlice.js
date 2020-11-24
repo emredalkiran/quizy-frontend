@@ -3,8 +3,8 @@ import { axios } from 'axios'
 
 
 export const logIn = createAsyncThunk('auth/logIn', async (credentials) => {
-  //const response = await axios.post('/v1/api/login', credentials)
-  return {name: "Emre", lastName: "Dalkiran"}
+  const response = await axios.post('/v1/api/user/login', credentials)
+  return response
 })
 
 const authSlice = createSlice({

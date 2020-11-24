@@ -1,7 +1,7 @@
 import { NavLink, Link } from 'react-router-dom'
 import MenuItem from './menu-item'
 import { useState} from 'react'
-import SignupForm from './login-modal'
+import UserAuthenticateModal from './user-authentication-modal'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../features/auth/authSlice'
 
@@ -9,11 +9,21 @@ import { selectUser } from '../features/auth/authSlice'
 
 
 export default function NavBar() {
-  const[loginOpen, setLoginOpen] = useState(false)
+  const[modelOpen, setModalOpen] = useState(false)
+  const[modalType, setModalType] = useState('')
   const user = useSelector(selectUser)
-  console.log(user)
   const close = ()=> {
-    setLoginOpen(false)
+    setModalOpen(false)
+    setModalType('') 
+  }
+  const handleClick = (e) => {
+    setModalOpen(true)
+    if (e.target.id === 'login') {
+      setModalType('login') 
+    }
+    else {
+      setModalType('signup')
+    }
   }
   return (
     <nav className="navbar">
@@ -49,10 +59,10 @@ export default function NavBar() {
           <div className="navbar-item">
             {(user.name === '') ? (
             <div className="buttons">
-              <div className="link-button" onClick={()=>setLoginOpen(true)}>
-                <span>Login</span>
+              <div className="link-button">
+                <span id="login" onClick={ (e)=>handleClick(e) }>Login</span>
               </div>
-              <button className="button is-primary">
+              <button id="signup" className="button is-primary" onClick={ (e)=>handleClick(e) }>
                 <strong>Sign up</strong>
               </button>
             </div>) : (
@@ -62,7 +72,8 @@ export default function NavBar() {
           </div>
         </div>
       </div>
-      <SignupForm open={loginOpen} close={close} onLogin={() => setLoginOpen(false)}/>
+      <UserAuthenticateModal open={ modelOpen } close={ close } type={ modalType } onSuccess={ () => setModalOpen(false) }/>
+
     </nav>
   )
 }
