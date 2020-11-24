@@ -16,7 +16,6 @@ import FormInput from './form-input'
     lastName:'',
     email: '',
     password: '',
-    passwordConfirmation: ''
   })
   const [touched, setTouched] = useState({
     name:'',
@@ -24,6 +23,7 @@ import FormInput from './form-input'
     email: '',
     password: ''
   })  
+  const [serverErrorMessage, setServerErrorMessage] = useState('')
 
   const dispatch = useDispatch()
 
@@ -43,6 +43,7 @@ import FormInput from './form-input'
   }
 
   const handleSubmit = async (e)=> {
+    console.log("Handle submit")
     e.preventDefault()
     setTouched({
       name:true,
@@ -52,8 +53,16 @@ import FormInput from './form-input'
     }) 
     try {
       const credendtials = signupValidationSchema.validateSync(inputs, { abortEarly: false })
-      await dispatch(signup(credendtials))
-      props.onLogin()
+      console.log(credendtials)
+      const result = await dispatch(signup(credendtials))
+      if (!result.success){
+        setServerErrorMessage(result.error)
+      }
+      else {
+        props.close()
+        //TODO: Log the user in
+      }
+
       setTouched({ email:false, password: false })
     }
     catch (err) {
@@ -75,7 +84,7 @@ import FormInput from './form-input'
   return (
     <form>
       <div className="login-input-elements-wrapper">
-        <span>Temporary</span>
+        <span className={`${ serverErrorMessage === ''? "server-error-message" : "server-error-message is-hidden" }`}>Temporary</span>
         <FormInput fieldName="name" type="text" label="Name"  errorMessage={ errorMessages.name } touched={ touched.name } blur={ ()=>setTouched({...touched, name:true})} change={ e => handleChange(e) } inputValue={ inputs.name }/>
         <FormInput fieldName="lastName" type="text" label="Last name" errorMessage={ errorMessages.lastName } touched={ touched.lastName } blur={ ()=>setTouched({...touched, lastName:true})} change={ e => handleChange(e) } inputValue={ inputs.lastName }/>
         <FormInput fieldName="email" type="email" label="Email"  errorMessage={ errorMessages.email } touched={ touched.email } blur={ ()=>setTouched({...touched, email:true})} change={ e => handleChange(e) } inputValue={ inputs.email }/>

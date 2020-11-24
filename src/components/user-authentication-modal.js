@@ -11,18 +11,18 @@ function UserAuthenticateModal (props)  {
     e.stopPropagation() // stop bubbling
   }
   return (
-    <div className={`modal ${props.open ? "is-active" : ""}`} onClick={ handleBackgroundClick } >
+    <div className={ `modal ${props.open ? "is-active" : ""}` } onClick={ handleBackgroundClick } >
       <div className="modal-background"></div>
       <div className="modal-card" onClick={ (e)=> handleCardClick(e) }>
         <header className="modal-card-head">
           <p className="modal-card-title has-text-centered has-text-weight-semibold"> { props.type }</p>
-          <button className="delete" onClick={props.close} aria-label="close"></button>
+          <button className="delete" onClick={ props.close } aria-label="close"></button>
         </header>
         <section className="modal-card-body" >
           {props.type === 'login' ? (
               <LoginForm onSuccess={ props.onSuccess } changeModal={ props.changeModal }/>
             ) : props.type === 'signup' ? (
-              <SignupForm onSuccess={ props.onSuccess } changeModal={ props.changeModal }/>
+              <SignupForm onSuccess={ props.onSuccess } close={ props.close } changeModal={ props.changeModal }/>
             ) : '' }
         </section>
       </div>
