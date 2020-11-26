@@ -59,7 +59,8 @@ import FormInput from './form-input'
         console.log("Signed up error is: ", signupError)
         setSignupError(result.payload.error)
       }
-      else {  props.close()
+      else {  
+        props.close()
         //TODO: Log the user in
       }
 
@@ -90,9 +91,9 @@ import FormInput from './form-input'
         <FormInput fieldName="lastName" type="text" label="Last name" errorMessage={ errorMessages.lastName } touched={ touched.lastName } blur={ ()=>setTouched({...touched, lastName:true})} change={ e => handleChange(e) } inputValue={ inputs.lastName }/>
         <FormInput fieldName="email" type="email" label="Email"  errorMessage={ errorMessages.email } touched={ touched.email } blur={ ()=>setTouched({...touched, email:true})} change={ e => handleChange(e) } inputValue={ inputs.email }/>
         <FormInput fieldName="password" type="password" label="Password"  errorMessage={ errorMessages.password } touched={ touched.password } blur={ ()=>setTouched({...touched, password:true})} change={ e => handleChange(e) } inputValue={ inputs.password }/>  
-      <button type="submit" className="button is-primary is-fullwidth has-text-weight-medium" onClick={ e =>handleSubmit(e) }>Continue</button>
+      <button type="submit" className="button is-primary is-fullwidth has-text-weight-semibold" onClick={ e =>handleSubmit(e) }>Continue</button>
       <p className="mt-4">
-        <span>Already a member? <span className="link-text" onClick={ props.changeModal }> Login</span></span>
+        <span>Already a member? <span className="link-text has-text-weight-semibold" onClick={ props.changeModal }> Login</span></span>
       </p>
       </div>
     </form> 

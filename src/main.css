@@ -7823,6 +7823,21 @@ body,
 .link-text:hover {
   color: #3e68de; }
 
+.modal-card-body {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px; }
+
+@keyframes slide-from-bottom {
+  from {
+    transform: translateY(50%);
+    opacity: 0; }
+  to {
+    transform: translateY(0);
+    opacity: 1; } }
+
+.auth-modal {
+  animation: slide-from-bottom 0.4s ease-out; }
+
 @media (min-width: 1408px) {
   .navbar {
     padding: 0.5rem 5rem; }

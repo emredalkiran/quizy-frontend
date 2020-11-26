@@ -66,9 +66,9 @@ import FormInput from './form-input'
         <span>Temporary</span>
         <FormInput fieldName="email" type="email" label="Email"  errorMessage={ errorMessages.email } touched={ touched.email } blur={ ()=>setTouched({...touched, email:true})} change={ e => handleChange(e) } inputValue={ inputs.email }/>
         <FormInput fieldName="password" type="password" label="Password"  errorMessage={ errorMessages.password } touched={ touched.password } blur={ ()=>setTouched({...touched, password:true})} change={ e => handleChange(e) } inputValue={ inputs.password }/>  
-      <button type="submit" className="button is-primary is-fullwidth has-text-weight-medium" onClick={ e =>handleSubmit(e) }>Continue</button>
+      <button type="submit" className="button is-primary is-fullwidth has-text-weight-semibold" onClick={ e =>handleSubmit(e) }>Continue</button>
       <p className="mt-4">
-        <span>Not registered yet? <span className="link-text" onClick={ props.changeModal }>Sign up</span></span>
+        <span>Not registered yet? <span className="link-text has-text-weight-semibold" onClick={ props.changeModal }>Sign up</span></span>
       </p>
       </div>
     </form> 
