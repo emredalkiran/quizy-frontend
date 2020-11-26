@@ -36,12 +36,18 @@ const authSlice = createSlice({
   },
   extraReducers: {
     [login.fulfilled]: (sliceState, action) => {
-      console.log("Logged in")
-      console.log(action)
+
+    },
+    [signup.pending]: (sliceState, action) => {
+      sliceState.authError = ''
+
     },
     [signup.fulfilled]: (sliceState, action) => {
-      console.log("Signed up")
-      console.log(action)
+      if (!action.payload.success) {
+        sliceState.isLoggedIn = false
+      } else {
+        sliceState.isLoggedIn = true
+      }
     },
     [signup.rejected]: (sliceState, action)=> {
       console.log(action)
@@ -51,6 +57,7 @@ const authSlice = createSlice({
 })
 
 export const selectUser = state => state.auth.user
+export const isLoggedIn = state => state.auth.isLoggedIn
 
 const reducer = authSlice.reducer
 

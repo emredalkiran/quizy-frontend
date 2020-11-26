@@ -102,8 +102,11 @@ body,
   padding: 1em;
   display: block;
 }
-.login-input-elements-wrapper div {
+.login-input-elements-wrapper .input-wrapper {
   height: 6em;
+}
+.login-input-elements-wrapper .message-body {
+  padding: 0.5em 1.5em;
 }
 
 .is-primary.input,

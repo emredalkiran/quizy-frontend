@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { signup } from '../features/auth/authSlice'
 import { validateSingleField, signupValidationSchema} from '../utils/validation'
 import FormInput from './form-input'
 
  export default function SignupForm (props) {
+
   const [inputs, setInputs] = useState({
     name:'',
     lastName:'',
@@ -23,8 +24,7 @@ import FormInput from './form-input'
     email: '',
     password: ''
   })  
-  const [serverErrorMessage, setServerErrorMessage] = useState('')
-
+  const [signupError, setSignupError] = useState('')
   const dispatch = useDispatch()
 
   const handleChange = (e) => {
@@ -43,8 +43,8 @@ import FormInput from './form-input'
   }
 
   const handleSubmit = async (e)=> {
-    console.log("Handle submit")
     e.preventDefault()
+    setSignupError('')
     setTouched({
       name:true,
       lastName: true,
@@ -53,13 +53,13 @@ import FormInput from './form-input'
     }) 
     try {
       const credendtials = signupValidationSchema.validateSync(inputs, { abortEarly: false })
-      console.log(credendtials)
       const result = await dispatch(signup(credendtials))
-      if (!result.success){
-        setServerErrorMessage(result.error)
+      if (!result.payload.success) {
+        console.log("Is signed up false")
+        console.log("Signed up error is: ", signupError)
+        setSignupError(result.payload.error)
       }
-      else {
-        props.close()
+      else {  props.close()
         //TODO: Log the user in
       }
 
@@ -72,7 +72,6 @@ import FormInput from './form-input'
         let errors = {}
         err.inner.forEach(error => {
           if (!errorFields.includes(error.path)) {
-            console.log(error.path)
             errorFields.push(error.path)
             errors[error.path] = error.message
           }
@@ -84,7 +83,9 @@ import FormInput from './form-input'
   return (
     <form>
       <div className="login-input-elements-wrapper">
-        <span className={`${ serverErrorMessage === ''? "server-error-message" : "server-error-message is-hidden" }`}>Temporary</span>
+        <div className={ `${ signupError !== '' ? "message is-danger" : "message is-danger is-hidden" }` }>
+          <div className="message-body">{ signupError }</div>
+        </div>
         <FormInput fieldName="name" type="text" label="Name"  errorMessage={ errorMessages.name } touched={ touched.name } blur={ ()=>setTouched({...touched, name:true})} change={ e => handleChange(e) } inputValue={ inputs.name }/>
         <FormInput fieldName="lastName" type="text" label="Last name" errorMessage={ errorMessages.lastName } touched={ touched.lastName } blur={ ()=>setTouched({...touched, lastName:true})} change={ e => handleChange(e) } inputValue={ inputs.lastName }/>
         <FormInput fieldName="email" type="email" label="Email"  errorMessage={ errorMessages.email } touched={ touched.email } blur={ ()=>setTouched({...touched, email:true})} change={ e => handleChange(e) } inputValue={ inputs.email }/>
