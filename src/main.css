@@ -7827,25 +7827,23 @@ body,
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px; }
 
+.navbar-item .avatar {
+  width: auto;
+  max-height: 60px; }
+
 @keyframes slide-from-bottom {
-  0% {
+  from {
     transform: translateY(50%);
     opacity: 0; }
-  10% {
-    transform: translateY(50%);
-    opacity: 0; }
-  100% {
+  to {
     transform: translateY(0);
     opacity: 1; } }
 
 @-webkit-keyframes slide-from-bottom {
-  0% {
+  from {
     transform: translateY(50%);
     opacity: 0; }
-  10% {
-    transform: translateY(50%);
-    opacity: 0; }
-  100% {
+  to {
     transform: translateY(0);
     opacity: 1; } }
 
