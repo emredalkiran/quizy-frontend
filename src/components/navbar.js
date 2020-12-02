@@ -3,7 +3,7 @@ import MenuItem from './menu-item'
 import { useState} from 'react'
 import UserAuthenticateModal from './user-authentication-modal'
 import { useSelector } from 'react-redux'
-import { selectUser } from '../features/auth/authSlice'
+import { selectUserName, selectLoginStatus } from '../features/auth/authSlice'
 
 
 
@@ -11,7 +11,8 @@ import { selectUser } from '../features/auth/authSlice'
 export default function NavBar() {
   const[modelOpen, setModalOpen] = useState(false)
   const[modalType, setModalType] = useState('')
-  const user = useSelector(selectUser)
+  const userName = useSelector(selectUserName)
+  const isLoggedin = useSelector(selectLoginStatus)
   const close = ()=> {
     setModalOpen(false)
     setModalType('') 
@@ -61,7 +62,7 @@ export default function NavBar() {
         </div>
         <div className="navbar-end">
           <div className="navbar-item">
-            { (user.name === '') ? (
+            { !isLoggedin ? (
             <div className="buttons">
               <div className="link-button">
                 <span id="login" onClick={ (e)=>handleClick(e) }>Login</span>
@@ -70,8 +71,12 @@ export default function NavBar() {
                 <strong>Sign up</strong>
               </button>
             </div>) : (
-
-              <div>{ user.name }</div>
+              <div className="is-flex is-align-items-center">
+                <figure className="image">
+                  <img className="is-rounded avatar" src="/assets/img/avatar.png" alt="avatar"/>
+                </figure>
+                <span className="ml-2 has-text-weight-medium">{ `Hi, `+ userName }</span>
+              </div>
             ) }
           </div>
         </div>
