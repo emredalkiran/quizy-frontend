@@ -55,16 +55,11 @@ import FormInput from './form-input'
       const credendtials = signupValidationSchema.validateSync(inputs, { abortEarly: false })
       const result = await dispatch(signup(credendtials))
       if (!result.payload.success) {
-        console.log("Is signed up false")
-        console.log("Signed up error is: ", signupError)
         setSignupError(result.payload.error)
       }
       else {  
         props.close()
-        //TODO: Log the user in
       }
-
-      setTouched({ email:false, password: false })
     }
     catch (err) {
       //check err type to see if it is validation error or error with asnyc network request

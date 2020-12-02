@@ -17,7 +17,7 @@ import FormInput from './form-input'
     email:false,
     password: false 
   })  
-
+  const [loginError, setLoginError] = useState('')
   const dispatch = useDispatch()
 
   const handleChange = (e) => {
@@ -40,9 +40,13 @@ import FormInput from './form-input'
     setTouched({email:true, password: true}) 
     try {
       const credendtials = loginValidationSchema.validateSync(inputs, { abortEarly: false })
-      await dispatch(login(credendtials))
-      props.onLogin()
-      setTouched({ email:false, password: false })
+      const result = await dispatch(login(credendtials))
+      if (!result.payload.success) {
+        setLoginError(result.payload.error)
+      }
+      else {
+        props.close()
+      }
     }
     catch (err) {
       //check err type to see if it is validation error or error with asnyc network request
@@ -63,7 +67,9 @@ import FormInput from './form-input'
   return (
     <form>
       <div className="login-input-elements-wrapper">
-        <span>Temporary</span>
+        <div className={ `${ loginError !== '' ? "message is-danger" : "message is-danger is-hidden" }` }>
+          <div className="message-body">{ loginError }</div>
+        </div>
         <FormInput fieldName="email" type="email" label="Email"  errorMessage={ errorMessages.email } touched={ touched.email } blur={ ()=>setTouched({...touched, email:true})} change={ e => handleChange(e) } inputValue={ inputs.email }/>
         <FormInput fieldName="password" type="password" label="Password"  errorMessage={ errorMessages.password } touched={ touched.password } blur={ ()=>setTouched({...touched, password:true})} change={ e => handleChange(e) } inputValue={ inputs.password }/>  
       <button type="submit" className="button is-primary is-fullwidth has-text-weight-semibold" onClick={ e =>handleSubmit(e) }>Continue</button>
