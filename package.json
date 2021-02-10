@@ -5,9 +5,8 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^5.11.5",
-    "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "bulma": "^0.9.1",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
@@ -46,6 +45,8 @@
     ]
   },
   "devDependencies": {
-    "dotenv": "^8.2.0"
+    "@testing-library/react": "^11.2.3",
+    "dotenv": "^8.2.0",
+    "redux-mock-store": "^1.5.4"
   }
 }
