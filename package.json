@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "css-watch": "npm run css-build -- --watch",
-    "css-build": "node-sass --omit-source-map-url sass/custom-styles.scss src/main.css",
+    "css-build": "node-sass --omit-source-map-url sass/custom-styles.scss src/components/App/main.css",
     "dev": "npm run start"
   },
   "eslintConfig": {

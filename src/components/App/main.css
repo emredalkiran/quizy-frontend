@@ -7721,9 +7721,8 @@ body,
   cursor: pointer;
   color: #242424;
   vertical-align: bottom; }
-
-.navbar-item-button:hover {
-  color: #3e68de; }
+  .navbar-item-button:hover {
+    color: #3e68de; }
 
 .title {
   font-size: 3rem;
@@ -7744,11 +7743,21 @@ body,
   color: white;
   font-weight: 500;
   border: none; }
-
-.is-hero-button:hover {
-  background-color: #4d75e8;
-  border: none;
-  color: white; }
+  .is-hero-button:hover {
+    background-color: #4d75e8;
+    border: none;
+    color: white;
+    outline: none; }
+  .is-hero-button:active {
+    background-color: #4d75e8;
+    border: none;
+    color: white;
+    outline: none; }
+  .is-hero-button:focus {
+    background-color: #4d75e8;
+    border: none;
+    color: white;
+    outline: none; }
 
 .link-button {
   background-color: transparent;
@@ -7757,24 +7766,25 @@ body,
   font-weight: bold;
   font-size: 1rem;
   padding: 0 2rem; }
-
-.link-button:hover {
-  background-color: transparent;
-  border: none;
-  color: #3e68de; }
+  .link-button:hover {
+    background-color: transparent;
+    border: none;
+    color: #3e68de; }
 
 .button.is-primary {
   background-color: #3e68de;
   border: none;
   color: #fff; }
-
-.button.is-primary:hover {
-  background-color: #4d75e8;
-  border: none !important;
-  color: #fff; }
-
-.button.is-primary:focus {
-  outline: none; }
+  .button.is-primary:hover {
+    background-color: #4d75e8;
+    border: none;
+    color: #fff; }
+  .button.is-primary:active {
+    outline: none;
+    color: white; }
+  .button.is-primary:focus {
+    outline: none;
+    color: white; }
 
 .input-error {
   font-size: 0.8rem;
@@ -7831,6 +7841,10 @@ body,
   width: auto;
   max-height: 60px; }
 
+.navbar-item-button {
+  padding: 1rem;
+  min-width: unset; }
+
 @keyframes slide-from-bottom {
   from {
     transform: translateY(50%);
@@ -7861,7 +7875,4 @@ body,
   .navbar {
     padding: 0.5rem 5rem; }
   .hero.is-large .hero-body {
-    padding: 0 0 10rem 10rem; }
-  /* .hero-image {
-   height: 768px;
-  }*/ }
+    padding: 0 0 10rem 10rem; } }
