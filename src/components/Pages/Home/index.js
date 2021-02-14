@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 function Home() {
   return (
     <section className='hero is-large'>
@@ -13,9 +15,11 @@ function Home() {
               <h2 className='subtitle'>
                 Make your forms fun to complete. Get valuable insights.
               </h2>
-              <button className='button is-hero-button'>
-                Get started for free
-              </button>
+              <Link to='/dashboard'>
+                <button className='button is-hero-button'>
+                  Get started for free
+                </button>
+              </Link>
             </div>
           </div>
           <div>
