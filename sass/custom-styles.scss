@@ -49,6 +49,10 @@ body,
 .hero-body .title {
   color: $primary;
 }
+.button {
+  border-radius: 10px;
+}
+
 .is-hero-button {
   background-color: $primary;
   color: white;

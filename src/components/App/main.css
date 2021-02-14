@@ -7738,6 +7738,9 @@ body,
 .hero-body .title {
   color: #3e68de; }
 
+.button {
+  border-radius: 10px; }
+
 .is-hero-button {
   background-color: #3e68de;
   color: white;
