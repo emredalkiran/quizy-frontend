@@ -10,8 +10,12 @@ $body-family: $fonts;
 $app-primary: #3e68de;
 $app-primary-light: #4d75e8;
 $primary: $app-primary;
+$primary-text-color: #010101;
 
-body,
+section {
+  height: 100%;
+}
+
 .footer {
   background-color: #fcfbf7;
 }
@@ -46,6 +50,7 @@ body,
   width: auto;
   max-height: 700px;
 }
+
 .hero-body .title {
   color: $primary;
 }
@@ -166,15 +171,69 @@ body,
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
 }
-.navbar-item .avatar {
+.avatar {
   width: auto;
   max-height: 60px;
+  border-radius: 50%;
 }
 
 .navbar-item-button {
   padding: 1rem;
   min-width: unset;
 }
+
+.dashboard-main {
+  background-color: #ebebf5;
+  padding: 0.5rem 5rem;
+  color: $primary-text-color;
+  min-height: 100vh;
+}
+.dashboard-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard-header {
+  font-size: 2.3rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header-menu {
+  > svg {
+    margin-left: 2rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    &:hover {
+      background-color: white;
+      border-radius: 10px;
+    }
+  }
+  > figure {
+    margin-left: 4rem;
+  }
+}
+.dashboard-content {
+  border-radius: 40px;
+  background-color: #f4f4fc;
+}
+.dashboard-menu-item {
+  padding: 0.8rem 1rem 0.8rem 0.4rem;
+
+  > a {
+    color: #777;
+
+    &:hover {
+      color: $primary-text-color;
+    }
+  }
+  &:hover {
+    border-left: 0.2rem solid $primary-text-color;
+    padding-left: 0.2rem;
+  }
+}
+
 @keyframes slide-from-bottom {
   from {
     transform: translateY(50%);

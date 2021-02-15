@@ -7703,7 +7703,9 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem; }
 
-body,
+section {
+  height: 100%; }
+
 .footer {
   background-color: #fcfbf7; }
 
@@ -7840,13 +7842,56 @@ body,
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px; }
 
-.navbar-item .avatar {
+.avatar {
   width: auto;
-  max-height: 60px; }
+  max-height: 60px;
+  border-radius: 50%; }
 
 .navbar-item-button {
   padding: 1rem;
   min-width: unset; }
+
+.dashboard-main {
+  background-color: #ebebf5;
+  padding: 0.5rem 5rem;
+  color: #010101;
+  min-height: 100vh; }
+
+.dashboard-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
+.dashboard-header {
+  font-size: 2.3rem;
+  font-weight: 600;
+  letter-spacing: 0.2rem;
+  margin-bottom: 2rem; }
+
+.dashboard-header-menu > svg {
+  margin-left: 2rem;
+  cursor: pointer;
+  padding: 0.3rem; }
+  .dashboard-header-menu > svg:hover {
+    background-color: white;
+    border-radius: 10px; }
+
+.dashboard-header-menu > figure {
+  margin-left: 4rem; }
+
+.dashboard-content {
+  border-radius: 40px;
+  background-color: #f4f4fc; }
+
+.dashboard-menu-item {
+  padding: 0.8rem 1rem 0.8rem 0.4rem; }
+  .dashboard-menu-item > a {
+    color: #777; }
+    .dashboard-menu-item > a:hover {
+      color: #010101; }
+  .dashboard-menu-item:hover {
+    border-left: 0.2rem solid #010101;
+    padding-left: 0.2rem; }
 
 @keyframes slide-from-bottom {
   from {
