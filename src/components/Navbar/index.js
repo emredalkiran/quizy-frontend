@@ -7,7 +7,7 @@ import {
   selectUserName,
   selectLoginStatus
 } from '../../features/auth/authSlice'
-
+import Avatar from '../shared/avatar'
 export default function NavBar() {
   const [modelOpen, setModalOpen] = useState(false)
   const [modalType, setModalType] = useState('')
@@ -88,13 +88,7 @@ export default function NavBar() {
               </div>
             ) : (
               <div className='is-flex is-align-items-center'>
-                <figure className='image'>
-                  <img
-                    className='is-rounded avatar'
-                    src='/assets/img/avatar.png'
-                    alt='avatar'
-                  />
-                </figure>
+                <Avatar />
                 <span className='ml-2 has-text-weight-medium'>
                   {`Hi, ` + userName}
                 </span>
