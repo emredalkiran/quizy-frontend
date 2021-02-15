@@ -7853,11 +7853,11 @@ section {
 
 .dashboard-main {
   background-color: #ebebf5;
-  padding: 0.5rem 5rem;
   color: #010101;
   min-height: 100vh; }
 
 .dashboard-panel {
+  padding: 0.5rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between; }
@@ -7879,19 +7879,30 @@ section {
 .dashboard-header-menu > figure {
   margin-left: 4rem; }
 
-.dashboard-content {
-  border-radius: 40px;
-  background-color: #f4f4fc; }
-
 .dashboard-menu-item {
   padding: 0.8rem 1rem 0.8rem 0.4rem; }
   .dashboard-menu-item > a {
     color: #777; }
-    .dashboard-menu-item > a:hover {
+    .dashboard-menu-item > a > div {
+      padding-left: 2rem; }
+    .dashboard-menu-item > a:hover, .dashboard-menu-item > a.active {
       color: #010101; }
-  .dashboard-menu-item:hover {
-    border-left: 0.2rem solid #010101;
-    padding-left: 0.2rem; }
+      .dashboard-menu-item > a:hover > div, .dashboard-menu-item > a.active > div {
+        border-left: 0.2rem solid #010101;
+        padding-left: 1.8rem; }
+
+.dashboard-card-container {
+  border-radius: 3rem;
+  background-color: #f4f4fc;
+  width: 100%;
+  min-height: 70vh; }
+  .dashboard-card-container .card {
+    border-radius: 2rem;
+    height: 10rem;
+    width: 20rem; }
+
+.is-full-width {
+  width: 100%; }
 
 @keyframes slide-from-bottom {
   from {

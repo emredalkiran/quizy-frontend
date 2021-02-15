@@ -184,11 +184,11 @@ section {
 
 .dashboard-main {
   background-color: #ebebf5;
-  padding: 0.5rem 5rem;
   color: $primary-text-color;
   min-height: 100vh;
 }
 .dashboard-panel {
+  padding: 0.5rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -214,26 +214,46 @@ section {
     margin-left: 4rem;
   }
 }
-.dashboard-content {
-  border-radius: 40px;
-  background-color: #f4f4fc;
-}
+
 .dashboard-menu-item {
   padding: 0.8rem 1rem 0.8rem 0.4rem;
 
   > a {
     color: #777;
-
-    &:hover {
-      color: $primary-text-color;
+    > div {
+      padding-left: 2rem;
     }
-  }
-  &:hover {
-    border-left: 0.2rem solid $primary-text-color;
-    padding-left: 0.2rem;
+    &:hover,
+    &.active {
+      color: $primary-text-color;
+      > div {
+        border-left: 0.2rem solid $primary-text-color;
+        padding-left: 1.8rem;
+      }
+    }
   }
 }
 
+.dashboard-card-container {
+  border-radius: 3rem;
+  background-color: #f4f4fc;
+  width: 100%;
+  min-height: 70vh;
+
+  .card {
+    border-radius: 2rem;
+    height: 10rem;
+    width: 20rem;
+  }
+}
+
+.dashboard-card {
+  padding-top: 3rem;
+}
+
+.is-full-width {
+  width: 100%;
+}
 @keyframes slide-from-bottom {
   from {
     transform: translateY(50%);
