@@ -1,0 +1,6 @@
+export { default as Bell } from './Bell'
+export { default as Comment } from './Comment'
+export { default as Hero } from './Hero'
+export { default as House } from './House'
+export { default as Settings } from './Settings'
+export { default as Survey } from './Survey'
