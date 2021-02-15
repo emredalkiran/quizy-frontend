@@ -1,4 +1,4 @@
-import { Link, useRouteMatch } from 'react-router-dom'
+import { useRouteMatch } from 'react-router-dom'
 import { House, Survey, Settings } from '../../Icons'
 import DashboardMenuItem from './dashboar-menu-item'
 
@@ -8,15 +8,18 @@ function DashboardMenu({ className }) {
   const routes = [
     {
       name: 'Dashboard',
-      component: <House width='1.6rem' height='1.6rem' />
+      component: <House width='1.6rem' height='1.6rem' />,
+      url: url
     },
     {
       name: 'Survey Builder',
-      component: <Survey width='1.6rem' height='1.6rem' />
+      component: <Survey width='1.6rem' height='1.6rem' />,
+      url: `${url}/survey-builder`
     },
     {
       name: 'Settings',
-      component: <Settings width='1.6rem' height='1.6rem' />
+      component: <Settings width='1.6rem' height='1.6rem' />,
+      url: `${url}/settings`
     }
   ]
   return (
@@ -28,6 +31,7 @@ function DashboardMenu({ className }) {
               key={el.name}
               name={el.name}
               component={el.component}
+              url={el.url}
             />
           )
         })}
