@@ -7901,6 +7901,9 @@ section {
     height: 10rem;
     width: 20rem; }
 
+.dashboard-card {
+  padding-top: 3rem; }
+
 .is-full-width {
   width: 100%; }
 
